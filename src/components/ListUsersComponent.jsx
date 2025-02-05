@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react'
-import { listEmployees } from '../../services/EmployeeService'
+import { listUsers } from '../../services/UserService'
 import { useNavigate } from 'react-router-dom'
 
-function ListEmployeeComponent() {
+function ListUsersComponent() {
 
-  const [employees, setEmployees] =  useState([])
+  const [Users, setUsers] =  useState([])
 
   const navigator = useNavigate();
 
 useEffect(()=>{
-    listEmployees().then((response) => {
-        setEmployees(response.data);
+    listUsers().then((response) => {
+        setUsers(response.data);
     }).catch(error => {console.error(error);
 })
 
@@ -35,11 +35,11 @@ function createUser(){
             </thead>
             <tbody>
                 {
-                    employees.map(employee =>
-                        <tr key={employee.id}>
-                            <td>{employee.id}</td>
-                            <td>{employee.name}</td>
-                            <td>{employee.email}</td>
+                    Users.map(User =>
+                        <tr key={User.id}>
+                            <td>{User.id}</td>
+                            <td>{User.name}</td>
+                            <td>{User.email}</td>
                         </tr>
                     )
                 }
@@ -50,4 +50,4 @@ function createUser(){
   )
 }
 
-export default ListEmployeeComponent
+export default ListUsersComponent

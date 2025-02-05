@@ -5,7 +5,7 @@ function HeaderComponent() {
     <div>
         <header>
             <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-                <a className="navbar-brand" href="#">SneakerShop</a>
+                <a className="navbar-brand" href="http://localhost:4200/users">SneakerShop</a>
             </nav>
         </header>
     </div>

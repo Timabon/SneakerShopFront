@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { use } from 'react';
-import { createUser } from '../../services/EmployeeService';
+import { createUser } from '../../services/UserService';
 import { useNavigate } from 'react-router-dom';
 
 const UserComponent = () => {
@@ -8,6 +7,12 @@ const UserComponent = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const navigator = useNavigate();    
+
+  const [errors, setErrors] = useState({
+    username: '',
+    password: '',
+    email: ''
+  })
 
     function handleUsername(e){
         setUsername(e.target.value);
@@ -23,7 +28,8 @@ const UserComponent = () => {
 
     function saveUser(e){
         e.preventDefault();
-
+        
+        if(validateForm()){
         const user = {name: username, password, email}
         console.log(user);
 
@@ -31,6 +37,36 @@ const UserComponent = () => {
             console.log(response.data);
             navigator('/');
         })
+    }
+    }
+
+    function validateForm(){
+        let valid = true;
+
+        const errorsCopy = {... errors}
+
+        if(username.trim()){
+            errorsCopy.username = '';
+        }else{
+        errorsCopy.username = 'Username is required.';
+        valid = false;
+    }
+        if(password.trim()){
+            errorsCopy.password = '';
+        }else{
+        
+            errorsCopy.password = 'Password is required.';
+            valid = false;
+        }
+        if(email.trim()){
+            errorsCopy.email = '';
+        }else{
+            errorsCopy.email = 'Email is required.';
+            valid = false;
+        }
+
+        setErrors(errorsCopy);
+        return valid;
     }
 
     return (
@@ -47,8 +83,10 @@ const UserComponent = () => {
                         placeholder='Enter username'
                         name='username'
                         value={username}
-                        className='form-control'
-                        onChange={handleUsername} />
+                        className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                        onChange={handleUsername} 
+                        />
+                        {errors.username && <div className='invalid-feedback'>{ errors.username}</div>}
                     </form>
                 </div>
                 <div className='card-body'>
@@ -60,8 +98,10 @@ const UserComponent = () => {
                         placeholder='Enter password'
                         name='password'
                         value={password}
-                        className='form-control'
-                        onChange={handlePassword} />
+                        className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                        onChange={handlePassword}
+                         />
+                         {errors.password && <div className='invalid-feedback'>{ errors.password}</div>}
                     </form>
                 </div>
                 <div className='card-body'>
@@ -73,8 +113,10 @@ const UserComponent = () => {
                         placeholder='Enter email'
                         name='email'
                         value={email}
-                        className='form-control'
-                        onChange={handleEmail} />
+                        className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                        onChange={handleEmail} 
+                        />
+                        {errors.email && <div className='invalid-feedback'>{ errors.email}</div>}
                     </form>
                 </div>
                 <button className='btn btn-success' onClick={saveUser}>Submit</button>
