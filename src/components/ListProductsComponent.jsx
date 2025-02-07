@@ -16,7 +16,7 @@ function ListProductsComponent() {
         {products.map((product) => (
           <div key={product.id} className="col-md-4"> {/* 3 products per row */}
             <div className="card" style={{ width: "18rem" }}>
-              <img src={product.imageUrl} className="card-img-top" alt={product.name} />
+              <img src={product.imageUrls} className="card-img-top" alt={product.name} />
               <div className="card-body">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">${product.price}</p>
