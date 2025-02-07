@@ -8,8 +8,10 @@ function HeaderComponent() {
                 <a className="navbar-brand" href="https://sneaker-shop-front-ebon.vercel.app/">SneakerShop</a>
                 
                 <div className='ms-auto'>
-                  <a href="/products" className='btn btn-primary'></a>
-                </div>
+  <a href="/products" className='btn btn-primary px-4 py-2 fw-bold'>
+    Products
+  </a>
+</div>
             </nav>
         </header>
     </div>
