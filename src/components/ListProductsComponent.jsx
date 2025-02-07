@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { listProducts } from '../../services/ProductService';
 
 function ListProductsComponent() {
   const [products, setProducts] = useState([]); // State to store products
 
   useEffect(() => {
-    listProducts()
+    fetch("https://sneakershopback.onrender.com/api/v1/products/all") // Replace with your actual API endpoint
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching products:", error));

@@ -9,8 +9,7 @@ function ListUsersComponent() {
   const navigator = useNavigate();
 
 useEffect(()=>{
-    fetch("https://sneakershopback.onrender.com/api/v1/products/all")
-    .then((response) => {
+    listUsers().then((response) => {
         setUsers(response.data);
     }).catch(error => {console.error(error);
 })
