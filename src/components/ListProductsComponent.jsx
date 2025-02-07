@@ -4,7 +4,7 @@ function ListProductsComponent() {
   const [products, setProducts] = useState([]); // State to store products
 
   useEffect(() => {
-    fetch("https://sneakershopback.onrender.com/api/v1/products") // Replace with your actual API endpoint
+    fetch("https://sneakershopback.onrender.com/api/v1/products/all") // Replace with your actual API endpoint
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching products:", error));
