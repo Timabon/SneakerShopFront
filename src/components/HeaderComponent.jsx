@@ -5,7 +5,7 @@ function HeaderComponent() {
     <div>
         <header>
             <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-                <a className="navbar-brand" href="https://sneaker-shop-front-ebon.vercel.app/">SneakerShop</a>
+                <a className="navbar-brand" href="http://localhost:4200/">SneakerShop</a>
                 
                 <div className='ms-auto'>
   <a href="/products" className='btn btn-primary px-4 py-2 fw-bold'>

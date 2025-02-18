@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { listUsers } from '../../services/UserService'
+import { listUsersLocal } from '../../services/UserService';
 import { useNavigate } from 'react-router-dom'
 
 function ListUsersComponent() {
@@ -9,7 +9,7 @@ function ListUsersComponent() {
   const navigator = useNavigate();
 
 useEffect(()=>{
-    listUsers().then((response) => {
+    listUsersLocal().then((response) => {
         setUsers(response.data);
     }).catch(error => {console.error(error);
 })

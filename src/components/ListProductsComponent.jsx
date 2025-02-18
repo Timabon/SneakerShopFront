@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { listProductsLocal } from '../../services/ProductService';
 
 function ListProductsComponent() {
   const [products, setProducts] = useState([]); // State to store products
 
   useEffect(() => {
-    fetch("https://sneakershopback.onrender.com/api/v1/products/all") // Replace with your actual API endpoint
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Error fetching products:", error));
+    listProductsLocal()
+    .then((response) => {
+      setProducts(response.data);
+    }).catch(error => console.error(error));
   }, []);
 
   return (
@@ -20,7 +21,7 @@ function ListProductsComponent() {
               <div className="card-body">
                 <h5 className="card-title">{product.productName}</h5>
                 <p className="card-text">${product.productPrice}</p>
-                <a href={`/product/${product.productId}`} className="btn btn-primary">View Product</a>
+                <a href={`/products/${product.productId}`} className="btn btn-primary">View Product</a>
               </div>
             </div>
           </div>
